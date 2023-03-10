@@ -1,0 +1,1180 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+        <meta http-equiv='Expires' content='-1'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+        <title>JSIO APP CONTROLLER</title>
+
+         <!-- BOOTSTRAP -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+         rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+         
+         <!-- ----- / ----  CSS ---- / ------- -->
+         <style>
+            @media print{@page {size: landscape}}
+    
+            *{
+                margin: 0px;
+                padding: 0px;
+                list-style: none;
+            }
+            
+            body {
+                background-color: #dedede;
+
+                -webkit-touch-callout: none;
+
+                -webkit-user-select: none;
+
+                -khtml-user-select: none;
+
+                -moz-user-select: none;
+
+                -ms-user-select: none;
+
+                user-select: none;
+
+                overflow: hidden;
+            }
+            
+            .menu {
+                height: 18vh;
+                background-color: #118ec9;
+            }
+
+            /*------ / ------ BATERIA ------ / ----------------*/
+
+            #battery-percentage{
+                font-size: 6.25vh;
+                font-weight: 600;
+                padding-left: 15vw;
+                padding-top: 4.5vh;
+                font-family: Arial, Helvetica, sans-serif;
+                color: white;
+                user-select: none;
+            }
+
+            .battery-outer {
+                background: transparent;
+                width: 8vw;
+                height: 8vh;
+                border: 3.5px solid #FFFF;
+                border-radius: 5px;
+                position: absolute;
+                margin: 5vh 0 0 5vw;
+            }
+
+            .battery-outer:after {
+                content: '';
+                position: absolute;
+                top: calc(50% - 25%);
+                right: -0.70vw;
+                width: 0.5vw;
+                height: 3vh;
+                background: #FFFF;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+            
+            .battery-level {
+                width: 100%;
+                border-radius: 2px;
+                height: 100%;
+                animation: bttry-level 500s linear;
+            }
+
+            @keyframes bttry-level {
+                0%{
+                    width: 100%;
+                    background: #06b700 ;
+                }
+                50%{
+                    width: 50%;
+                    background: #ccdb00;
+                }
+                100%{
+                    width: 0%;
+                    background: #c40000;
+                }
+            }
+
+            /*------ RPM ------*/
+    
+            .rpm {
+                width: 100%;
+                position: absolute;
+                top: -16vh;
+                height: 50vh;
+            }
+
+            /*----- / ------  RPM (ANIMATION) ------ / ---------*/
+            
+            #rpm_Color_1{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm1 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.05%{
+                    fill: #FFFF;
+                }
+                0.1%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-1 {
+                animation-name: rpm1;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_2{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm2 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.1%{
+                    fill: #FFFF;
+                }
+                0.15%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-2 {
+                animation-name: rpm2;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_3{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm3 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.15%{
+                    fill: #FFFF;
+                }
+                0.2%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-3 {
+                animation-name: rpm3;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_4{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm4 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.2%{
+                    fill: #FFFF;
+                }
+                0.25%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-4 {
+                animation-name: rpm4;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_5{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm5 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.25%{
+                    fill: #FFFF;
+                }
+                0.3%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-5 {
+                animation-name: rpm5;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_6{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm6 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.3%{
+                    fill: #FFFF;
+                }
+                0.35%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-6 {
+                animation-name: rpm6;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_7{
+                fill: #FFFFFF;
+            }
+
+            @keyframes rpm7 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.35%{
+                    fill: #FFFF;
+                }
+                0.4%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-7 {
+                animation-name: rpm7;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_8{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm8 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.4%{
+                    fill: #FFFF;
+                }
+                0.45%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-8 {
+                animation-name: rpm8;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_9{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm9 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.45%{
+                    fill: #FFFF;
+                }
+                0.5%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-9 {
+                animation-name: rpm9;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_10{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm10 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.5%{
+                    fill: #FFFF;
+                }
+                0.55%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-10 {
+                animation-name: rpm10;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_11{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm11 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.55%{
+                    fill: #FFFF;
+                }
+                0.6%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-11 {
+                animation-name: rpm11;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_12{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm12 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.6%{
+                    fill: #FFFF;
+                }
+                0.65%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-12 {
+                animation-name: rpm12;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_13{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm13 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.65%{
+                    fill: #FFFF;
+                }
+                0.7%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-13 {
+                animation-name: rpm13;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_14{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm14 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.7%{
+                    fill: #FFFF;
+                }
+                0.75%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-14 {
+                animation-name: rpm14;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_15{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm15 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.75%{
+                    fill: #FFFF;
+                }
+                0.8%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-15 {
+                animation-name: rpm15;
+                animation-duration: 120s;
+            }
+
+            #rpm_Color_16{
+                fill: #ffffff;
+            }
+
+            @keyframes rpm16 {
+                0%{
+                    fill: #FFFF;
+                }
+                0.8%{
+                    fill: #FFFF;
+                }
+                0.85%{
+                    fill: #008500;
+                }
+                10%{
+                    fill: #D28500;
+                }
+                20%{
+                    fill: #C20000;
+                }
+                100%{
+                    fill: #000000;
+                }
+            }
+
+            .slide-rpm-16 {
+                animation-name: rpm16;
+                animation-duration: 120s;
+            }
+
+            main {
+                height: 85vh;
+            }
+
+            #buttons {
+                padding: 5vh 10vw 10vh 5vw;
+                height: 30vh;
+            }
+    
+            #button_1 {
+                width: 8.5vw;
+                text-align: center;
+                background-color: #e20c0c;
+                border: 3.5px solid #FFFF;
+                border-radius: 20%;
+                margin-right: 5%;
+                padding: 0;
+            }
+
+            #button_1:active {
+                background-color: #ee6008;
+            }
+    
+            .btn_bullhorn {
+                fill: #FFFF;
+            }
+    
+            #button_2 {
+                width: 8.5vw;
+                text-align: center;
+                background-color: #dfc900;
+                border: 3.5px solid #fff;
+                border-radius: 20%;
+                padding: 0;
+            } 
+    
+            #button_2:active {
+                background-color: #2e2e2e;
+            } 
+    
+            .btn_led {
+                fill: #fff;
+            }  
+            
+            #control {
+                width: 25vh;
+                height: 25vh;
+                transform: rotate(50deg); 
+                background-color: #c8f2ff;
+                border: 4px solid #2285A4;
+                border-radius: 20%;
+            }
+    
+            #control:active {
+                padding: 2%;
+                background-color: #ffffff;
+            }
+    
+            #control:after {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: -16%;
+                left: -16%;
+                right: -16%;
+                bottom: -16%;
+                border: 3px solid #fff;
+                border-radius: 20%;
+            }
+    
+            #control svg {
+                transform: rotate(-50deg); 
+            }
+
+            .btn_control {
+                fill: #20677C;
+            }
+    
+            .shadow_1 {
+                box-shadow: -10px 10px 20px 10px  rgba(94, 204, 255, 0.5);
+            }
+    
+            .shadow_1:active {
+                box-shadow: 0px 0px 15px 10px  rgba(18, 180, 255, 0.4);
+            }
+    
+            .shadow_2 {
+                box-shadow: 10px -10px 20px 10px rgba(94, 204, 255, 0.5);
+            }
+    
+            .shadow_2:active {
+                box-shadow: 0px 0px 15px 10px  rgba(18, 180, 255, 0.4);            
+            }
+    
+            .shadow_3 {
+                box-shadow: -10px -10px 10px 10px  rgba(94, 204, 255, 0.5);
+            }
+    
+            .shadow_3:active {
+                box-shadow: 0px 0px 15px 10px  rgba(18, 180, 255, 0.4);            
+            }
+            
+            .shadow_4 {
+                 box-shadow: 10px 10px 20px 10px  rgba(94, 204, 255, 0.5);
+            }
+    
+            .shadow_4:active {
+                box-shadow: 0px 0px 15px 10px  rgba(18, 180, 255, 0.4);            
+            }
+    
+            .p-left {
+                position: absolute;
+                bottom: 22vh;
+                left: 20vh;
+            
+            }
+    
+            .p-right {
+                position: absolute;
+                bottom: 11vh;
+                left: 58vh;
+            }
+            
+            .brake {
+                position: absolute;
+                bottom: 11vh;
+                right: 54vh;
+            }
+    
+            .power {
+                position: absolute;
+                bottom: 22vh;
+                right: 20vh;
+            }
+    
+            #btn_on_fill {
+                fill: currentColor;
+            }
+            
+            .color-btn {
+                color: #F22323;
+            }
+
+            #btn_on_border {
+                fill: currentColor;
+            }
+
+            .color-btn-border {
+                color: #720101;
+            }
+
+            .row {
+                height: calc(85vh - 22vh);
+            }
+    
+            #button_on {
+                border: none;
+                background: none;
+                width: 7.5vw;
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="menu">
+            <svg class="rpm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2475.57 1650.38">
+                <g>
+                    <path id="rpm_Color_1" d="M157.57,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77h0Z"/>
+                    <path id="rpm_Color_16" d="M2227.93,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_15" d="M2089.9,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.64,23.77-23.77,23.77h-69.83c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77h.02Z"/>
+                    <path id="rpm_Color_14" d="M1951.87,690.52h69.83c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.51c0-13.11,10.64-23.77,23.77-23.77l-.02,.02Z"/>
+                    <path id="rpm_Color_13" d="M1813.85,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.48c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77v.02Z"/>
+                    <path id="rpm_Color_12" d="M1675.82,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_11" d="M1537.8,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_10" d="M1399.77,690.52h69.83c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.64-23.77,23.77-23.77h-.02Z"/>
+                    <path id="rpm_Color_9" d="M1261.76,690.52h69.81c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_8" d="M1123.72,690.52h69.81c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_7" d="M985.69,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_6" d="M847.68,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_5" d="M709.66,690.52h69.81c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.64-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77h0Z"/>
+                    <path id="rpm_Color_4" d="M571.63,690.52h69.81c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.64,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_3" d="M433.6,690.52h69.81c13.11,0,23.77,10.64,23.77,23.77v215.5c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77Z"/>
+                    <path id="rpm_Color_2" d="M295.58,690.52h69.81c13.11,0,23.77,10.66,23.77,23.77v215.48c0,13.11-10.66,23.77-23.77,23.77h-69.81c-13.11,0-23.77-10.66-23.77-23.77v-215.5c0-13.11,10.66-23.77,23.77-23.77v.02Z"/>
+                </g>
+             </svg>
+            <div class="battery-outer">
+                <div class="battery-level"></div>
+            </div>
+            <p id="battery-percentage">100%</p>
+        </header>
+        <main>
+            <div id="buttons">
+                <button type="button" id="button_1" class="btn">
+                    <svg class="btn_bullhorn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                        <path d="M923.91,500.16l-180.33-308.26c-4.24-3.73-9.13-5-14.03-6.27-5.52,1.17-9.25,5.41-10.53,10.3-42.86,163.68-141.61,231.79-296.38,324.41-12.1-13.61-22.39-24.13-35.77-32.86-4.89-1.28-12.22-3.2-15.94,1.05l-74.11,53.69-7.33-1.92c-80.62-21.11-163.85,27.59-184.96,108.2-21.11,80.62,27.59,163.85,108.2,184.96,80.62,21.1,163.85-27.59,184.96-108.2l1.92-7.33,83.75-40.72c4.89,1.28,6.81-6.05,8.08-10.93-1.05-15.94-4.53-32.52-11.11-47.29,156.58-89.53,264.35-142.23,428.02-99.38,4.89,1.28,10.42,.12,14.13-4.13,1.28-4.89,2.56-9.76,1.4-15.29h0Zm-653.59,113.4c-41.53-10.87-81.61,12.57-92.48,54.1-1.92,7.33-8.08,10.93-15.41,9.02-7.33-1.92-10.93-8.08-9.02-15.41,14.07-53.74,69.55-86.21,123.3-72.13,7.33,1.92,10.93,8.08,9.02,15.41s-8.08,10.93-15.41,9.02h0Z"/>
+                    </svg>
+                </button>
+                <button type="button" id="button_2" class="btn">
+                    <svg class="btn_led" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M10.98,5.05c-3.86,0-8.68,2.6-8.68,6.94s4.82,6.95,8.68,6.95,3.86-13.89,0-13.89m-.1,11.96c-2.7-.1-6.66-1.83-6.66-5.02s3.86-4.92,6.66-5.02c.39,.39,1.06,2.12,1.06,5.02s-.68,4.63-1.06,5.02m4.92-6.46l5.88,1.54-.48,1.83-5.31-1.35v-.58c0-.48-.1-.96-.1-1.45m5.79-3.38l-.48,1.83-5.88-1.45c-.1-.39-.19-.77-.29-1.06-.1-.48-.29-.87-.48-1.16l7.14,1.83m.1,9.74l-.48,1.83-6.08-1.54c.19-.48,.39-1.16,.48-1.83l6.08,1.54Z"/>
+                    </svg>
+                </button>
+                <button type="button" id="button_on" onclick="connection()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 511.99">
+                        <g id="btn_on_fill" class="color-btn">
+                          <circle cx="256" cy="255.5" r="253.5"/>
+                        </g>
+                        <g id="btn_on_border" class="color-btn-border" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+                          <path d="M256,0c70.68,0,134.7,28.66,181.02,74.98,46.32,46.32,74.98,110.34,74.98,181.02s-28.66,134.69-74.98,181.01-110.34,74.98-181.02,74.98-134.7-28.66-181.02-74.98C28.66,390.69,0,326.68,0,256S28.66,121.3,74.98,74.98C121.3,28.66,185.32,0,256,0Zm-19.16,136.45c0-10.57,8.59-19.16,19.16-19.16s19.16,8.59,19.16,19.16v62.55c0,10.57-8.59,19.16-19.16,19.16s-19.16-8.59-19.16-19.16v-62.55Zm72.94,52.45c-8.17-6.65-9.42-18.69-2.78-26.87,6.65-8.17,18.7-9.42,26.87-2.77,14.26,11.56,25.88,26.2,33.8,42.84,7.67,16.11,11.97,34.14,11.97,53.12,0,34.14-13.85,65.06-36.21,87.42l-1.17,1.08c-22.31,21.74-52.77,35.13-86.26,35.13s-64.99-13.86-87.38-36.26c-22.41-22.31-36.26-53.23-36.26-87.37,0-18.89,4.29-36.86,11.94-52.97,7.93-16.69,19.53-31.36,33.71-42.9,8.17-6.65,20.22-5.4,26.86,2.77,6.65,8.18,5.4,20.22-2.77,26.87-9.76,7.95-17.76,18.06-23.22,29.57-5.25,11.04-8.2,23.49-8.2,36.66,0,23.56,9.57,44.89,24.99,60.32,15.38,15.47,36.72,24.99,60.33,24.99s44.13-9.18,59.44-24.05l.89-.94c15.42-15.43,24.99-36.76,24.99-60.32,0-13.15-2.96-25.59-8.23-36.66-5.47-11.5-13.43-21.63-23.31-29.66h0Zm102.97-89.65c-40.11-40.1-95.54-64.92-156.75-64.92s-116.64,24.82-156.75,64.92c-40.1,40.11-64.92,95.54-64.92,156.75s24.82,116.63,64.92,156.74c40.11,40.1,95.54,64.92,156.75,64.92s116.64-24.82,156.75-64.92c40.1-40.11,64.92-95.53,64.92-156.74s-24.82-116.64-64.92-156.75Z"/>
+                        </g>
+                    </svg>
+                </button>
+            </div>  
+            <div class="row">
+                <div class="col-6 controls_move">
+                    <div class="p-left">
+                        <button type="button" id="control" class="control-left shadow_1" ontouchstart="left()" ontouchend="center()">
+                            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="btn_control" d="M2.47,12.44l10.43,10.48c.39,.4,1.07,.12,1.07-.44v-4.64c0-.17-.07-.32-.18-.44l-4.93-4.95c-.24-.24-.24-.64,0-.89l4.93-4.94c.12-.12,.18-.28,.18-.44V1.52c0-.56-.68-.84-1.07-.44L2.47,11.56c-.24,.24-.24,.64,0,.88Z"/>
+                              </svg>
+                        </button>
+                    </div>
+                    <div class="p-right">
+                        <button type="button" id="control" class="control-right shadow_2" ontouchstart="right()" ontouchend="center()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="btn_control" d="M10.03,1.52V6.17c0,.17,.07,.33,.18,.44l4.93,4.94c.24,.24,.24,.64,0,.89l-4.93,4.95c-.12,.12-.18,.28-.18,.44v4.64c0,.56,.68,.84,1.07,.44l10.43-10.48c.24-.24,.24-.64,0-.88L11.1,1.08c-.39-.4-1.07-.12-1.07,.44Z"/>
+                              </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6 controls_speed">
+                    <div class="power">
+                        <button type="button" id="control" class="control-top shadow_3" ontouchstart="front()" ontouchend="frontzero()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="btn_control" d="M11.56,1.5L1.08,11.92c-.4,.4-.12,1.08,.44,1.08H6.16c.17,0,.33-.07,.44-.18l4.95-4.92c.25-.24,.64-.24,.89,0l4.94,4.92c.12,.12,.28,.18,.44,.18h4.64c.56,0,.84-.68,.44-1.08L12.44,1.5c-.25-.24-.64-.24-.89,0Z"/>
+                              </svg>
+                        </button>
+                    </div>
+                    <div class="brake">
+                        <button type="button" id="control" class="control-down shadow_4" ontouchstart="rear()" ontouchend="rearzero()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="btn_control" d="M12.46,22.54l10.41-10.36c.41-.41,.12-1.12-.46-1.12h-4.56c-.17,0-.34,.07-.46,.19l-4.92,4.9c-.26,.25-.67,.25-.93,0l-4.92-4.9c-.12-.12-.29-.19-.46-.19H1.59c-.59,0-.88,.71-.46,1.12l10.41,10.36c.26,.25,.67,.25,.93,0Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+
+            ////////////* CONNECT TO APP */////////////
+            const uiSettings = {
+            showTopBar: false,
+            orientation: 'landscape', // portrait, landscape, ''
+            topBarTitle: 'Ble Decode'
+            }
+
+            document.addEventListener("DOMContentLoaded", function(event) {
+
+            BleFunctions.loadUISettings(JSON.stringify(uiSettings))
+            });
+
+
+            const scan_obj = {
+                scan_for:		'',
+                starts_with:	false,
+                scan_time:		5,
+                app:			'{"usr":"BLE-App"}', // will receive {"brd:"..."}
+                connCB:			'BLE_ConnCB',
+                recvCB:			'BLE_RecvCB',
+                scanResultsCB:	'BLE_ScanCB',
+                serviceUUID:				'2ac506a1-63bf-422c-8c60-7acfa9e81c46',
+                writeCharacteristicUUID:	'2ac506a2-63bf-422c-8c60-7acfa9e81c46',
+                receiveCharacteristicUUID:	'2ac506a3-63bf-422c-8c60-7acfa9e81c46',
+            };
+            
+            var JsioBleClassObj;
+            function JsioBle(scf, strw, stup, cb_r, cb_c, cb_l){
+                JsioBleClassObj = new JsioBleApp(scf, strw, stup, cb_r, cb_c, cb_l);
+                return JsioBleClassObj;
+            }
+            
+            class JsioBleApp{
+                constructor(scf, strw, stup, cb_r, cb_c, cb_l){
+                    scan_obj.scan_for = scf;
+                    scan_obj.starts_with = strw;
+                    this.setup = stup;
+                    this.cb_rec = cb_r;
+                    this.cb_con = cb_c;
+                    this.cb_log = cb_l;
+                    this.connected = false;
+                    this.setup_i = 0;
+                    this.setup_done = false;
+                }
+            
+                connect(){
+                    if(this.connected){
+                        BleFunctions.disconnectDevice();
+                    }else{
+                        this.cb_log(0, '{"usr":"BLE-App"}'); /*Thats a fake...*/
+                        let er = BleFunctions.startScanning(JSON.stringify(scan_obj));
+                        if(er > 0){
+                            this.cb_log(3, 'Scanning produced error #' + er);
+                        }
+                    }
+                }
+                get is_connected(){return this.connected;}
+            
+                send(str){
+                    BleFunctions.sendCommand(str);
+                    this.cb_log(1, str);
+                }
+            
+                setup_peri(ob){ // run the setup from the setup array.
+                    if(ob.brd != undefined){ // called only once at startup
+                        if(ob.brd == scan_obj.scan_for){
+                            this.setup_i = 0;
+                            this.setup_done = false;
+                        }else{
+                            this.cb_log(3, "&rarr; unknown board '"+ob.brd+"' tried to connect!");
+                            return false;
+                        }
+                    }
+            
+                    // TODO: test for error
+                    if(this.setup_done) return true;
+                    if(this.setup_i >= this.setup.length){
+                        this.cb_con(2,'');
+                        this.setup_done = true;
+                        return true; // setup is done
+                    }
+                    this.send(this.setup[this.setup_i]);
+                    this.setup_i++;
+                    return false;
+                }
+            }
+            
+            function BLE_ScanCB(ls){
+                BleFunctions.connectDevice(0);
+            }
+            
+            function BLE_ConnCB(conn, name){
+                JsioBleClassObj.connected = conn;
+                JsioBleClassObj.cb_con(conn, name);
+            }
+            
+            function BLE_RecvCB(str){
+                const ob = JSON.parse(str);
+                if(ob.error != undefined && ob.error != 0){
+                    JsioBleClassObj.cb_log(3, str);
+                    return;
+                } else{
+                console.log(str);
+                    JsioBleClassObj.cb_log(0, str);
+                }
+                if(JsioBleClassObj.setup_peri(ob)){
+                    JsioBleClassObj.cb_rec(ob);
+                }
+            }
+            //BLE_RecvCB('{"brd":"jsio.link_F412FA53FD25"}')
+
+
+            ///////////////  JSIOBLE CODE APP  //////////////
+
+            /* Example User program for use with the "Solder Oven".
+            * (c) 2022 JSIO Lda
+            */
+
+            /* The Setup of the Peripherals: -------------------------------------*/
+            const setup_strings = [ /* array of setup JSON messages, please see docu for details! */
+                '{"setup":{"PWM":39,"init":[500,50]}}',
+                '{"setup":{"GPO":15,"init":0}}',
+                '{"setup":{"GPO":16,"init":0}}',
+            ];
+
+            // Create a BLE connection: ----------------------------------------
+            //*
+            var cls = JsioBle(
+                'jsio.link_F412FAC1CFD1',	// search for device with name F412FAC1D00D ,F412FAC1CFD1
+                false,						// if true, search for device-names starting with
+                setup_strings,				// the array with the JSON setup strings
+                recv_callback,				// reception callback
+                connection_callback,		// connection callback
+                add2Log);					// logging callback
+
+
+            // ----- / ----- POWER // BRAKE ---- / ------
+            function frontzero(){
+                cls.send('{"stream":{"GPO":15,"val":0}}')
+                rpmDown();
+            } 
+            function rearzero(){
+                cls.send('{"stream":{"GPO":16,"val":0}}')
+                rpmDown();
+            }
+            function front(){
+                cls.send('{"stream":{"GPO":15,"val":1}}')
+                rpmUp();
+            }
+            function rear(){
+                cls.send('{"stream":{"GPO":16,"val":1}}')
+                rpmUp();
+            }
+
+            // ----- / ----- LEFT // RIGHT ---- / ------
+            function left(){
+                cls.send('{"stream":{"PWM":39,"val":46}}')
+            } 
+             function right(){
+                cls.send('{"stream":{"PWM":39,"val":106}}')
+            } 
+            function center(){
+                cls.send('{"stream":{"PWM":39,"val":76}}')
+            }
+
+           
+            ////////////////////////////////////////////////////////////////////////
+
+            // -------- // --------- **  RPM (ANIMATION) ** --------------- // ------
+
+            function rpmUp() {
+                var rpmUp1 = document.getElementById('rpm_Color_1');
+                var rpmUp2 = document.getElementById('rpm_Color_2');
+                var rpmUp3 = document.getElementById('rpm_Color_3');
+                var rpmUp4 = document.getElementById('rpm_Color_4');
+                var rpmUp5 = document.getElementById('rpm_Color_5');
+                var rpmUp6 = document.getElementById('rpm_Color_6');
+                var rpmUp7 = document.getElementById('rpm_Color_7');
+                var rpmUp8 = document.getElementById('rpm_Color_8');
+                var rpmUp9 = document.getElementById('rpm_Color_9');
+                var rpmUp10 = document.getElementById('rpm_Color_10');
+                var rpmUp11 = document.getElementById('rpm_Color_11');
+                var rpmUp12 = document.getElementById('rpm_Color_12');
+                var rpmUp13 = document.getElementById('rpm_Color_13');
+                var rpmUp14 = document.getElementById('rpm_Color_14');
+                var rpmUp15 = document.getElementById('rpm_Color_15');
+                var rpmUp16 = document.getElementById('rpm_Color_16');
+
+                rpmUp1.classList.add('slide-rpm-1');
+                rpmUp2.classList.add('slide-rpm-2');
+                rpmUp3.classList.add('slide-rpm-3');
+                rpmUp4.classList.add('slide-rpm-4');
+                rpmUp5.classList.add('slide-rpm-5');
+                rpmUp6.classList.add('slide-rpm-6');
+                rpmUp7.classList.add('slide-rpm-7');
+                rpmUp8.classList.add('slide-rpm-8');
+                rpmUp9.classList.add('slide-rpm-9');
+                rpmUp10.classList.add('slide-rpm-10');
+                rpmUp11.classList.add('slide-rpm-11');
+                rpmUp12.classList.add('slide-rpm-12');
+                rpmUp13.classList.add('slide-rpm-13');
+                rpmUp14.classList.add('slide-rpm-14');
+                rpmUp15.classList.add('slide-rpm-15');
+                rpmUp16.classList.add('slide-rpm-16');
+            }
+
+            function rpmDown() {
+                var rpmDown1 = document.getElementById('rpm_Color_1');
+                var rpmDown2 = document.getElementById('rpm_Color_2');
+                var rpmDown3 = document.getElementById('rpm_Color_3');
+                var rpmDown4 = document.getElementById('rpm_Color_4');
+                var rpmDown5 = document.getElementById('rpm_Color_5');
+                var rpmDown6 = document.getElementById('rpm_Color_6');
+                var rpmDown7 = document.getElementById('rpm_Color_7');
+                var rpmDown8 = document.getElementById('rpm_Color_8');
+                var rpmDown9 = document.getElementById('rpm_Color_9');
+                var rpmDown10 = document.getElementById('rpm_Color_10');
+                var rpmDown11 = document.getElementById('rpm_Color_11');
+                var rpmDown12 = document.getElementById('rpm_Color_12');
+                var rpmDown13 = document.getElementById('rpm_Color_13');
+                var rpmDown14 = document.getElementById('rpm_Color_14');
+                var rpmDown15 = document.getElementById('rpm_Color_15');
+                var rpmDown16 = document.getElementById('rpm_Color_16');
+
+                rpmDown1.classList.remove('slide-rpm-1');
+                rpmDown2.classList.remove('slide-rpm-2');
+                rpmDown3.classList.remove('slide-rpm-3');
+                rpmDown4.classList.remove('slide-rpm-4');
+                rpmDown5.classList.remove('slide-rpm-5');
+                rpmDown6.classList.remove('slide-rpm-6');
+                rpmDown7.classList.remove('slide-rpm-7');
+                rpmDown8.classList.remove('slide-rpm-8');
+                rpmDown9.classList.remove('slide-rpm-9');
+                rpmDown10.classList.remove('slide-rpm-10');
+                rpmDown11.classList.remove('slide-rpm-11');
+                rpmDown12.classList.remove('slide-rpm-12');
+                rpmDown13.classList.remove('slide-rpm-13');
+                rpmDown14.classList.remove('slide-rpm-14');
+                rpmDown15.classList.remove('slide-rpm-15');
+                rpmDown16.classList.remove('slide-rpm-16');
+            }
+
+
+            ///////////////////////////////////////////////////////////////////////
+
+            /*The receiving call-back: -------------------------------------------*/
+            function recv_callback(ob){
+                if(ob.read != undefined){ 
+                    if(ob.read.SPI != undefined){ 
+                        var k = ob.read.val;
+                        var num = parseInt(k[0])
+                        var num2 = parseInt(k[1])
+                    }
+                }
+            }
+
+            /*The connection call-back: ------------------------------------------*/
+            function connection_callback(conn, name){
+	            switch(conn){
+                    case 0:
+                        document.getElementById('btn_on_fill').style.color = '#F22323';
+                        document.getElementById('btn_on_border').style.color = '#720101';
+                        break;
+                    case 1: /* BLE has connected to device */
+                        document.getElementById('btn_on_fill').style.color = '#FFDC3C';
+                        document.getElementById('btn_on_border').style.color = '#725001'; 
+                        break;
+                    case 2: /* setup has finished */
+                        document.getElementById('btn_on_fill').style.color = '#71EB34';
+                        document.getElementById('btn_on_border').style.color = '#184E01'; 
+                        break;
+                    /*TODO: case 4: error during setup! */
+                }
+            }
+
+            /*The (Dis)Connection: ------------------------------------------------*/
+            function connection(){
+                // For WebSockets: This example is for 1 single connection only!
+                cls.connect();
+            }
+
+            
+            /* Logging: ------------------------------------------------------------*/
+            var logbuffer = "";
+            /* add2Log 1st parameter is type: 0:Input, 1:Output, 2:System, 3:Error
+            * The 2nd parameter is the text to log. */
+            function add2Log(type, str){
+                switch(type){
+                    case 0: logbuffer += '<br>&compfn;&rarr; ' + str; break;
+                    case 1: logbuffer += '<br>&larr;&compfn; ' + str; break;
+                    case 2: logbuffer += '<br><b style="color:#ff0;">' + str + '</b>'; break;
+                    case 3: logbuffer += '<br><b style="color:red;">' + str + '</b>'; break;
+                }
+                document.getElementById('logbox').innerHTML = logbuffer;
+            }
+
+            ///////////////////////////////////////////////////////////////
+
+            // ------ / ------- * Count Down - Battery * ------- / -------- 
+            var battery = setInterval(battery_down, 5000)
+            
+            var string = "%";
+            let count = 100;
+
+            function battery_down(){
+                count--;
+                document.querySelector("#battery-percentage").innerHTML =
+                count + string;
+
+                if(count == 0){
+                    clearInterval(battery)
+                }
+            }
+            
+                
+
+
+
+
+            ///////////////////////////////////////////////////////////////////////
+            // --------- / ------ Buttons Active --------- / -------------
+    
+            /*let controlleft = document.querySelector('.control-left');
+            let controlright = document.querySelector('.control-right');
+            let controlup = document.querySelector('.control-up');
+            let controldown = document.querySelector('.control-down');
+
+            let controlArray = [controlleft, controlright, controlup, controldown];
+
+            controlArray.forEach(control => {
+                
+            });
+
+            */
+        </script>
+    </body>
+</html>
